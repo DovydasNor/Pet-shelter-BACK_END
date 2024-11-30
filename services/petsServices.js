@@ -9,4 +9,12 @@ async function createPet(newPetData) {
     return response
 }
 
-module.exports = { createPet }
+async function getAllPets() {
+    const db = getDB()
+
+    const response = await db.collection('pets').find({}).toArray()
+
+    return response
+}
+
+module.exports = { createPet, getAllPets }
