@@ -16,4 +16,13 @@ router.post('/pets', async (req, res) => {
     }
 })
 
+router.get('/pets', async (req, res) => {
+    try {
+        const resData = await petsServices.getAllPets()
+        return res.send(resData)
+    } catch (error) {
+        return res.status(500).send({ error })
+    }
+})
+
 module.exports = router
