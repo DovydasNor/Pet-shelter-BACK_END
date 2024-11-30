@@ -4,6 +4,17 @@ const petsServices = require('../services/petsServices')
 
 const router = express.Router()
 
+router.get('/pets/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        const petData = await petsServices.getSinglePet(id)
+        res.send(petData)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: 'Internal server error' })
+    }
+})
+
 
 router.post('/pets', async (req, res) => {
     const newPetData = req.body
