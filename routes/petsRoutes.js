@@ -4,6 +4,18 @@ const petsServices = require('../services/petsServices')
 
 const router = express.Router()
 
+router.put('/pets/:id', async (req, res) => {
+    const { id } = req.params
+    const updatedPetData = req.body
+
+    try {
+        const resData = await petsServices.editPet(id, updatedPetData)
+        return res.send(resData)
+    } catch (error) {
+        return res.status(500).send({ error })
+    }
+})
+
 router.get('/pets/:id', async (req, res) => {
     try {
         const { id } = req.params
