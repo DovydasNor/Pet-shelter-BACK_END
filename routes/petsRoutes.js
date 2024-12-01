@@ -4,6 +4,17 @@ const petsServices = require('../services/petsServices')
 
 const router = express.Router()
 
+router.delete('/pets/:id', async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const resData = await petsServices.deletePet(id)
+        return res.send(resData)
+    } catch (error) {
+        return res.status(500).send({ error })
+    }
+})
+
 router.put('/pets/:id', async (req, res) => {
     const { id } = req.params
     const updatedPetData = req.body

@@ -9,6 +9,14 @@ async function editPet(id, updatedPetData) {
     return response
 }
 
+async function deletePet(id) {
+    const db = getDB()
+
+    const response = await db.collection('pets').deleteOne({ _id: ObjectId.createFromHexString(id) })
+
+    return response
+}
+
 async function getSinglePet(id) {
     const db = getDB()
 
@@ -33,4 +41,4 @@ async function getAllPets() {
     return response
 }
 
-module.exports = { createPet, getAllPets, getSinglePet, editPet }
+module.exports = { createPet, getAllPets, getSinglePet, editPet, deletePet }
