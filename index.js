@@ -8,6 +8,7 @@ const { connectToDB } = require('./db')
 
 const petsRoutes = require('./routes/petsRoutes')
 const volunteersRoutes = require('./routes/volunteersRoutes')
+const commentsRoutes = require('./routes/commentsRoutes')
 
 const app = express()
 
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/api', petsRoutes)
 app.use('/api', volunteersRoutes)
+app.use('/api', commentsRoutes)
 
 const port = process.env.PORT || 3000
 
