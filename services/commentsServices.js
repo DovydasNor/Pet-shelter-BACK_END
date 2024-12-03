@@ -25,6 +25,18 @@ async function addComment(petId, comment, volunteerId) {
     }
 }
 
+async function deleteComment(commentId) {
+    const db = getDB()
+    const commentsCollection = db.collection('comments')
+  
+    try {
+      const result = await commentsCollection.deleteOne({ _id: new ObjectId(commentId) })
+      return result.deletedCount > 0
+    } catch (error) {
+      throw new Error('Error deleting comment')
+    }
+  }
+
 async function getComments(petId) {
     const db = getDB()
     const commentsCollection = db.collection('comments')
@@ -53,5 +65,6 @@ async function getComments(petId) {
 
 module.exports = {
     addComment,
-    getComments
+    getComments,
+    deleteComment
 }
